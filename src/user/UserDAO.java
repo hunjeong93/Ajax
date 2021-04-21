@@ -50,6 +50,20 @@ public class UserDAO {
 				}
 				return userList;
 		}
-		
+		public int register(User user){
+			String SQL = "insert into user2 values (?,?,?,?)";
+			try {
+				pstmt= conn.prepareStatement(SQL);
+				pstmt.setString(1, user.getUserName());
+				pstmt.setInt(2, user.getUserAge());
+				pstmt.setString(3, user.getUserGender());
+				pstmt.setString(4, user.getUserEmail());
+				return pstmt.executeUpdate();
+			}catch(Exception e) {
+				e.printStackTrace();
+				
+			}
+			return -1; //데이터베이스 오류
+		}
 		
 }
